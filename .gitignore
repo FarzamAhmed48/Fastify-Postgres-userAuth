@@ -60,3 +60,6 @@ jest-test-results.json
 # Miscellaneous
 *.bak
 *.tmp
+
+
+db/
