@@ -22,5 +22,14 @@ module.exports = new EntitySchema({
         active: {
             type: "boolean",
         },
+        resetToken:{
+            type:"varchar",
+            nullable:true
+        },
+        resetTokenExpiry:{
+            type:"date",
+            nullable:true
+        }
+        
     },
 })
