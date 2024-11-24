@@ -4,11 +4,11 @@ const { logger } = require('../logger');
 const { fastifyOptions } = require('../fastifyOpts');
 const dotenv = require('dotenv');
 const userRoutes = require('./routes/userRoutes');
+const fastifyCookie = require('fastify-cookie');
 dotenv.config();
-
 const startServer = async () => {
     const app = fastify(fastifyOptions);
-
+    app.register(fastifyCookie)
     app.get('/', async (req, res) => {
         const result = { 
             code: 200,
@@ -17,9 +17,7 @@ const startServer = async () => {
         }
         res.send(result)
     })
-
-    app.register(userRoutes);
-
+    app.register(userRoutes)
     try {
         await app.listen({port: process.env.SERVER_PORT, host:process.env.SERVER_HOST});
         await dataSource.initialize()
