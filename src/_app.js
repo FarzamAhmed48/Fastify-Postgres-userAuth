@@ -21,7 +21,7 @@ const startServer = async () => {
     app.register(userRoutes);
 
     try {
-        await app.listen(process.env.SERVER_PORT);
+        await app.listen({port: process.env.SERVER_PORT, host:process.env.SERVER_HOST});
         await dataSource.initialize()
         .then((conn) => {
           logger.info("Database connection has beed established ...");
@@ -29,7 +29,7 @@ const startServer = async () => {
         .catch(error => {
           logger.error(error);
         })
-        logger.info(`Server is Listening on ${process.env.NODE_ENV}`)
+        logger.info(`Server is Listening on ${process.env.SERVER_PORT}`)
 
     } catch (error) {
         logger.error(error.message);
